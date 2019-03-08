@@ -16,7 +16,7 @@ public class SimpleThreadMove extends Thread{
 		c = true;
 		this.r = r;
 		id = idd;
-		rectangles  = new ArrayList<Rectangle>();
+		rectangles	= new ArrayList<Rectangle>();
 		rectangles.add(x);
 		
 		
@@ -28,6 +28,7 @@ public class SimpleThreadMove extends Thread{
 			r = cc.rigth(r);
 			r = cc.left(r);
 			try {
+//				cc.getPane().getChildren().add(rectangles.get(id));
 				sleep(30);
 				
 			} catch (InterruptedException e) {

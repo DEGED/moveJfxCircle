@@ -43,7 +43,8 @@ public class CircleController {
     
     private Rectangle square;
     private ArrayList<Rectangle> po;
-//    private ArrayList<SimpleThreadMove> threads;
+    private ArrayList<SimpleThreadMove> threads;
+    
     
     @FXML
     void DownMethod(ActionEvent event) {
@@ -52,16 +53,17 @@ public class CircleController {
 
     @FXML
     void generateNew(MouseEvent event) {
-    	int idd = 1;
-    	
+    	int idd = 0;
     	double x = event.getX();
     	double y = event.getY();
-//    	ArrayList<Rectangle> squareList = new  ArrayList<Rectangle>();
-    	shape = new Rectangle(x,y, shape.getWidth(),shape.getHeight());
-    	SimpleThreadMove xio = new SimpleThreadMove(this,r,idd,shape);
-    	pane.getChildren().add(po.get(idd));
-    	xio.start();
+    	Rectangle generic1 = new Rectangle(x,y, shape.getWidth(),shape.getHeight());
+    	SimpleThreadMove generic2 = new SimpleThreadMove(this,r,idd,generic1);
+//    	pane.getChildren().add(po.get(idd));
+    	generic2.start();
     	
+//    	pane.getChildren().add(po.get(idd));
+//    	po.add(generic1);
+//    	xio.start();  	
 //    	SimpleThreadMove l = new SimpleThreadMove(this, r, idd);
 //    	l.start();
 //    	threads.add(l);
@@ -69,9 +71,10 @@ public class CircleController {
     }
     @FXML
     void move(ActionEvent event) {
+    	/*
     	t = new SimpleThreadMove(this,r,0,shape);
     	t.start();
-    	
+    	*/
     	stop.setDisable(false);
     	move.setDisable(true);
     }
@@ -88,7 +91,6 @@ public class CircleController {
     		shape.setLayoutX(shape.getLayoutX()+5);
     		shape.setLayoutY(shape.getLayoutY()+5);
     		shape.setRotate(shape.getRotate()+4);
-    		shape.
     		System.out.println("Derecha");
     	}
 // 	 || shape.getLayoutY()>=pane.getMaxHeight()
@@ -115,6 +117,9 @@ public class CircleController {
     public void setShape(Rectangle l) {
     	shape = l;
     }
+    public Pane getPane() {
+    	return pane;
+    }
     public boolean getR() {
     	return r;
     }
@@ -125,5 +130,12 @@ public class CircleController {
 //        id = 0;
         po = new ArrayList<Rectangle>();
     }
+    public void onCloseRequest() throws InterruptedException {
+    	t.s();
+    	t.join();
+//    	xio.join();
+    	System.out.println("Chao");
+    }
+    
 }
 
